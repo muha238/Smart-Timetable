@@ -2,6 +2,9 @@
   "name": "smart-timetable-mvp",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
     "dev:api": "node --watch server/index.js",

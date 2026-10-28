@@ -4,7 +4,10 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const databasePath = resolve(
-  process.env.DATABASE_PATH ?? fileURLToPath(new URL("../data/timetable.db", import.meta.url)),
+  process.env.DATABASE_PATH ??
+    (process.env.VERCEL === "1"
+      ? "/tmp/smart-timetable.db"
+      : fileURLToPath(new URL("../data/timetable.db", import.meta.url))),
 );
 mkdirSync(dirname(databasePath), { recursive: true });
 

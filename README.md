@@ -16,6 +16,12 @@ Backend API: `http://localhost:3001` (routes are also available under `/api`)
 
 Даму кезінде Vite `/api` сұрауларын backend-ке прокси жасайды. SQLite дерекқоры `data/timetable.db` ішінде автоматты түрде жасалады. Қажет болса, `DATABASE_PATH` ортасының айнымалысымен басқа файл көрсетуге болады.
 
+## Vercel-ге орналастыру
+
+Vercel жобасының Root Directory мәні репозиторийдің түбірі (`.`) болуы керек. Framework Preset ретінде Vite таңдаңыз; Build Command — `npm run build`, Output Directory — `dist`. `api/[...path].js` функциясы `/api/*` сұрауларын Express backend-ке бағыттайды. Node.js 22.x қолданылады.
+
+Vercel-дегі файлдық жүйе уақытша болғандықтан, бұл MVP SQLite деректері тұрақты сақталатынына кепілдік бермейді: serverless функция `/tmp/smart-timetable.db` қолданады. Тұрақты өндірістік деректер үшін бөлек орналастырылған PostgreSQL дерекқорын қосу қажет.
+
 ## API
 
 - `GET/POST /api/teachers`

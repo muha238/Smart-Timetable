@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import { fileURLToPath } from "node:url";
 import { db } from "./database.js";
 
 const app = express();
@@ -196,6 +197,10 @@ app.delete(["/lessons/:id", "/api/lessons/:id"], (req, res) => {
   res.status(204).end();
 });
 
-app.listen(port, () => {
-  console.log(`Smart Timetable API listening on http://localhost:${port}`);
-});
+if (process.env.VERCEL !== "1" && process.argv[1] === fileURLToPath(import.meta.url)) {
+  app.listen(port, () => {
+    console.log(`Smart Timetable API listening on http://localhost:${port}`);
+  });
+}
+
+export default app;
